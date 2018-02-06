@@ -14,7 +14,7 @@ public class helpActivity extends AppCompatActivity {
     }
 
     public static Intent makeIntent(Context context){
-        Intent intent = new Intent (context,PlayActivity.class);
+        Intent intent = new Intent (context,helpActivity.class);
         return intent;
     }
 }
