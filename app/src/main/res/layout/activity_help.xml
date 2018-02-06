@@ -49,5 +49,5 @@
         android:layout_below="@+id/Help"
         android:layout_marginStart="31dp"
         android:layout_marginTop="25dp"
-        android:text="TextView" />
+        android:text="@string/description" />
 </android.widget.RelativeLayout>
