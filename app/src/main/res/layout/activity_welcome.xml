@@ -35,4 +35,13 @@
         android:layout_marginBottom="33dp"
         android:layout_marginStart="15dp"
         android:text="@string/names" />
+
+    <Button
+        android:id="@+id/Skipbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView2"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="46dp"
+        android:text="@string/skip" />
 </RelativeLayout>
