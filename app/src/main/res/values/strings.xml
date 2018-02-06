@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">MindSeeker</string>
-    <string name="play">PLAY</string>
-    <string name="setting">SETTING</string>
-    <string name="help">HELP</string>
+    <string name="welcome">Welcome</string>
+    <string name="names">by Junha Choi and Jinyoung Hong</string>
+    <string name="Game_Name">Mine Seeker</string>
+    <string name="play">play</string>
+    <string name="setting">Setting</string>
+    <string name="help">Help</string>
 </resources>
