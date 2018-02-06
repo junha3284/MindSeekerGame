@@ -13,6 +13,11 @@
             android:name=".StartActivity"
             android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
             android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
 
         </activity>
         <activity android:name=".WelcomeActivity"
