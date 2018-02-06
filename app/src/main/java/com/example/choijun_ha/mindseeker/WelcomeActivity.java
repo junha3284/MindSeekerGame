@@ -32,8 +32,8 @@ public class WelcomeActivity extends AppCompatActivity {
         skip.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), StartActivity.class);
-                startActivity(intent);
+                //Intent intent = new Intent(getApplicationContext(), StartActivity.class);
+                //startActivity(intent);
                 finish();
             }
         });

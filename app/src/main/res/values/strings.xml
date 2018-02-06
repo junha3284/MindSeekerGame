@@ -7,6 +7,10 @@
     <string name="play">play</string>
     <string name="setting">Setting</string>
     <string name="help">Help</string>
+    <string name="board_size">Board Size</string>
+    <string name="mine_number">Mine Number</string>
+    <string name="settings">Settings</string>
+    <string name="reset_play_history">Reset Play History</string>
     <string name="back">Back</string>
     <string name="description">TextView</string>
 </resources>
