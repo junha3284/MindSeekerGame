@@ -3,6 +3,7 @@ package com.example.choijun_ha.mindseeker;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.media.Image;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +19,7 @@ import android.widget.RelativeLayout;
 public class WelcomeActivity extends AppCompatActivity {
     private static int SPLASH_TIME_OUT = 5000;
     ImageView imageview;
+    boolean clicked=false;
     public void onAttachedToWindow(){
         super.onAttachedToWindow();
         Window window=getWindow();
@@ -34,7 +36,10 @@ public class WelcomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), StartActivity.class);
                 startActivity(intent);
+                clicked=true;
                 finish();
+
+
             }
         });
     }
@@ -51,24 +56,26 @@ public class WelcomeActivity extends AppCompatActivity {
         ImageView imageView=(ImageView) findViewById(R.id.Ryan1);
         imageView.clearAnimation();;
         imageView.startAnimation(anim);
+        new Handler().postDelayed(new Runnable() {
 
-        Thread myThread = new Thread() {
+            /*
+             * Showing splash screen with a timer. This will be useful when you
+             * want to show case your app logo / company
+             */
+
             @Override
             public void run() {
-                try {
-                    int waited=0;
-                    sleep(5000);
+
+                // close this activity
+                if(!clicked)
+                {
                     Intent intent = new Intent(getApplicationContext(), StartActivity.class);
                     startActivity(intent);
                     finish();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
                 }
-                finally{
-                    finish();
-                }
+
             }
-        };
-        myThread.start();
+        }, SPLASH_TIME_OUT);
+
     }
 }

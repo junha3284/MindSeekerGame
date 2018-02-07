@@ -12,7 +12,7 @@ public class PlayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
     }
-
+    
     public static Intent makeIntent(Context context){
         Intent intent = new Intent (context,PlayActivity.class);
         return intent;
