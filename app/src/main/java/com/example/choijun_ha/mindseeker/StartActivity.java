@@ -24,7 +24,7 @@ public class StartActivity extends AppCompatActivity {
         playBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                // TO DO: produce playActivity
+                // TODO: produce playActivity
                 Intent intent = PlayActivity.makeIntent(StartActivity.this);
                 startActivity(intent);
             }
@@ -32,7 +32,7 @@ public class StartActivity extends AppCompatActivity {
         settingBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                // TO DO: produce configActivity
+                // TODO: produce configActivity
                 Intent intent = configActivity.makeIntent(StartActivity.this);
                 startActivity(intent);
             }
