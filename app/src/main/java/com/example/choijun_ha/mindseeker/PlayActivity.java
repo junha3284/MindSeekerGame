@@ -22,9 +22,10 @@ public class PlayActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
+        g=Game.createGame();
         chooseTableSize();
         populateButtons();
-        g=Game.createGame();
+
     }
 
     private void chooseTableSize() {
@@ -70,6 +71,7 @@ public class PlayActivity extends AppCompatActivity {
 
     private void gridButtonClicked(int x,int y) {
         //TODO:decide what button will do+uncomment game above
+
     }
 
     public static Intent makeIntent(Context context){
