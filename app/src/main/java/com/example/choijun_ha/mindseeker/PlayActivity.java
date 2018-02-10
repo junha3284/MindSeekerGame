@@ -15,15 +15,15 @@ import com.example.choijun_ha.mindseeker.Model.Game;
 
 public class PlayActivity extends AppCompatActivity {
 
-    private Game g;
-    int NUM_ROWS=4;
-    int NUM_COLS=6;
+    private Game g = Game.createGame();
+    int NUM_ROWS;
+    int NUM_COLS;
    // private Game game;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
-        g = Game.createGame();
+
         g.startGame();
         chooseTableSize();
         populateButtons();

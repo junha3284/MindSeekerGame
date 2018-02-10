@@ -24,10 +24,13 @@ public class Game {
     }
 
     public static Game createGame(){
-        if(game == null)
-            return new Game();
-        else
+        if(game == null) {
+            game = new Game();
             return game;
+        }
+        else {
+            return game;
+        }
     }
 
     public int getColNum(){
