@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.Toast;
 
 import com.example.choijun_ha.mindseeker.Model.Game;
 
@@ -22,13 +23,13 @@ public class PlayActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
+        g = Game.createGame();
+        g.startGame();
         chooseTableSize();
         populateButtons();
-        g=Game.createGame();
     }
 
     private void chooseTableSize() {
-        //TODO:change NUM_ROWS,NUM_COLS
         NUM_ROWS=g.getRowNum();
         NUM_COLS=g.getColNum();
     }
@@ -70,6 +71,7 @@ public class PlayActivity extends AppCompatActivity {
 
     private void gridButtonClicked(int x,int y) {
         //TODO:decide what button will do+uncomment game above
+        Toast.makeText(getApplicationContext(),""+g.userClick(x,y),Toast.LENGTH_SHORT).show();
     }
 
     public static Intent makeIntent(Context context){
