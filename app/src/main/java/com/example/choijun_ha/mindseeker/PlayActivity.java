@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.choijun_ha.mindseeker.Model.Game;
@@ -72,6 +73,15 @@ public class PlayActivity extends AppCompatActivity {
     private void gridButtonClicked(int x,int y) {
         //TODO:decide what button will do+uncomment game above
         Toast.makeText(getApplicationContext(),""+g.userClick(x,y),Toast.LENGTH_SHORT).show();
+        updateUI();
+    }
+
+    private void updateUI(){
+        TextView num_scan = (TextView) findViewById(R.id.num_scans_used);
+        TextView num_mine_found = (TextView) findViewById(R.id.num_found_mines);
+
+        num_scan.setText(getText(R.string.num_scans_used).toString()+ ": " + g.getAttemptNum());
+        num_mine_found.setText(getText(R.string.numminesfound).toString()+": " +g.getFoundMineNum());
     }
 
     public static Intent makeIntent(Context context){

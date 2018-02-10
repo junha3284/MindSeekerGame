@@ -41,6 +41,14 @@ public class Game {
         return ROW_NUM;
     }
 
+    public int getAttemptNum(){
+        return this.attemptNum;
+    }
+
+    public int getFoundMineNum() {
+        return this.MINE_NUM - this.coveredMineNum;
+    }
+
     public void setSize(int row, int col){
         this.ROW_NUM = row;
         this.COL_NUM = col;

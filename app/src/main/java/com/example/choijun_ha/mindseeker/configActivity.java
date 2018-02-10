@@ -45,7 +45,7 @@ public class configActivity extends AppCompatActivity {
                             break;
                         }
                     }
-                    String srow=size.substring(0,a-1);
+                    String srow=size.substring(0,a);
                     String scol=size.substring(a+1,size.length());
                     int irow=Integer.parseInt(srow);
                     int icol=Integer.parseInt(scol);
