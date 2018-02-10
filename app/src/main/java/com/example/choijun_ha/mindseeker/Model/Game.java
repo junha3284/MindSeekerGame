@@ -49,16 +49,21 @@ public class Game {
 
     public void startGame(){
         this.btns = new BTN[ROW_NUM][COL_NUM];
+        for(int i=0; i < ROW_NUM; i++)
+            for(int j=0; j < COL_NUM; j++)
+                btns[i][j] = new BTN();
         this.generateMines();
         this.attemptNum = 0;
         this.coveredMineNum = this.MINE_NUM;
     }
 
-    // -1 => User found all mines
-    // 0 => clicked covered-NoMine BTN => give Hint Num in GameActivity
-    // 1 => clicked covered-Mine BTN
-    // 2 => clicked uncovered-Mine-BTN => give Hint Num in GameActivity
-    // 3 => clicked unconvered-noMine-BTN
+    /*
+    -1 => User found all mines
+     0 => clicked covered-NoMine BTN => give Hint Num in GameActivity
+     1 => clicked covered-Mine BTN
+     2 => clicked uncovered-Mine-BTN => give Hint Num in GameActivity
+     3 => clicked unconvered-noMine-BTN
+     */
     public int userClick(int row, int col){
         BTN temp = btns[row][col];
         if(temp.checkCovered()){
@@ -85,7 +90,7 @@ public class Game {
         }
     }
 
-    private int getHintNum(int row, int col){
+    public int getHintNum(int row, int col){
         return btns[row][col].getHintNum();
     }
 
