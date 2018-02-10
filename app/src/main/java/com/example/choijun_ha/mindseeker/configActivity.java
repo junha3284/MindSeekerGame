@@ -1,14 +1,4 @@
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-
-import com.example.choijun_ha.mindseeker.Model.Game;
-import com.example.choijun_ha.mindseeker.R;ackage com.example.choijun_ha.mindseeker;
+package com.example.choijun_ha.mindseeker;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,13 +10,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 public class configActivity extends AppCompatActivity {
-    private Game g;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_config);
-        g=Game.createGame();
+
         PopulateRadioGroup();
         setBtn();
     }
