@@ -9,7 +9,10 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.example.choijun_ha.mindseeker.Model.Game;
+
 public class configActivity extends AppCompatActivity {
+    private Game g = Game.createGame();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

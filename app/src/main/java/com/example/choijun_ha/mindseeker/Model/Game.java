@@ -13,15 +13,14 @@ public class Game {
     private int COL_NUM=4;
     private int ROW_NUM=6;
     private int MINE_NUM=6;
-    private int attemptNum = 0;
-    private int coveredMineNum = MINE_NUM;
+    private int attemptNum;
+    private int coveredMineNum;
 
     BTN[][] btns;
 
     private static Game game;
 
     private Game(){
-        btns = new BTN[this.ROW_NUM][this.COL_NUM];
     }
 
     public static Game createGame(){
@@ -42,13 +41,52 @@ public class Game {
     public void setSize(int row, int col){
         this.ROW_NUM = row;
         this.COL_NUM = col;
-        this.btns = new BTN[this.ROW_NUM][this.COL_NUM];
-        this.generateMines();
     }
 
     public void setMineNum(int mineNum){
         this.MINE_NUM = mineNum;
+    }
+
+    public void startGame(){
+        this.btns = new BTN[ROW_NUM][COL_NUM];
         this.generateMines();
+        this.attemptNum = 0;
+        this.coveredMineNum = this.MINE_NUM;
+    }
+
+    // -1 => User found all mines
+    // 0 => clicked covered-NoMine BTN => give Hint Num in GameActivity
+    // 1 => clicked covered-Mine BTN
+    // 2 => clicked uncovered-Mine-BTN => give Hint Num in GameActivity
+    // 3 => clicked unconvered-noMine-BTN
+    public int userClick(int row, int col){
+        BTN temp = btns[row][col];
+        if(temp.checkCovered()){
+            this.attemptNum++;
+            temp.uncover();
+            if(temp.checkMined()){
+                decRowHintNum(row);
+                decColHintNum(col);
+                temp.incHintNum();
+                this.coveredMineNum--;
+                if(this.coveredMineNum > 0 )
+                    return 1;
+                else
+                    return -1;
+            }
+            return 0;
+        }
+        else{
+            if(temp.checkMined()) {
+                this.attemptNum++;
+                return 2;
+            }
+            return 3;
+        }
+    }
+
+    private int getHintNum(int row, int col){
+        return btns[row][col].getHintNum();
     }
 
     private void generateMines(){
@@ -61,19 +99,30 @@ public class Game {
             int row = temp/COL_NUM;
             int col = temp%COL_NUM;
             btns[row][col].implantMine();
-            increaseColHintNum(col);
-            increaseRowHintNum(row);
+            incColHintNum(col);
+            incRowHintNum(row);
             btns[row][col].decHintNum(); // because hint num increase twice with above two functions
         }
     }
 
-    private void increaseRowHintNum(int row){
+    private void incRowHintNum(int row){
         for(int i=0; i < COL_NUM; i++)
             btns[row][i].incHintNum();
     }
-    private void increaseColHintNum(int col){
+
+    private void decRowHintNum(int row){
+        for(int i=0; i< COL_NUM; i++)
+            btns[row][i].decHintNum();
+    }
+
+    private void incColHintNum(int col){
         for(int i=0; i < ROW_NUM; i++)
             btns[i][col].incHintNum();
+    }
+
+    private void decColHintNum(int col){
+        for(int i=0; i < ROW_NUM; i++)
+            btns[i][col].decHintNum();
     }
 
 }
