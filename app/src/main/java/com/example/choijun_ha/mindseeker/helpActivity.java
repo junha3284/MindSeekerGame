@@ -22,7 +22,7 @@ public class helpActivity extends AppCompatActivity {
         backbtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                // TO DO: produce helpActivity
+                // TODO: produce helpActivity
                 Intent intent = new Intent();
                 finish();
             }
