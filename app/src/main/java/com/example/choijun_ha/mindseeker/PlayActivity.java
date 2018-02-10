@@ -70,6 +70,18 @@ public class PlayActivity extends AppCompatActivity {
     }
 
     private void gridButtonClicked(int x,int y) {
+        if(g.userClick(x,y)==0)
+        {}
+        else if(g.userClick(x,y)==1)
+        {}
+        else if(g.userClick(x,y)==2)
+        {}
+        else if(g.userClick(x,y)==3)
+        {}
+        else if(g.userClick(x,y)==-1)
+        {
+            Toast.makeText(getApplicationContext(),"User found all minds!!",Toast.LENGTH_SHORT).show();
+        }
         //TODO:decide what button will do+uncomment game above
         Toast.makeText(getApplicationContext(),""+g.userClick(x,y),Toast.LENGTH_SHORT).show();
     }
