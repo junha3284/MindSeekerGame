@@ -3,6 +3,7 @@ package com.example.choijun_ha.mindseeker;
 import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +18,8 @@ import com.example.choijun_ha.mindseeker.Model.Game;
 public class PlayActivity extends AppCompatActivity {
 
     private Game g = Game.createGame();
+    private Button[][] buttons;
+
     int NUM_ROWS;
     int NUM_COLS;
    // private Game game;
@@ -26,6 +29,7 @@ public class PlayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_play);
 
         g.startGame();
+
         chooseTableSize();
         populateButtons();
     }
@@ -36,6 +40,7 @@ public class PlayActivity extends AppCompatActivity {
     }
 
     private void populateButtons() {
+        buttons = new Button[NUM_ROWS][NUM_COLS];
         TableLayout table=(TableLayout)findViewById(R.id.TableForButtons);
         for(int row=0;row<NUM_ROWS;row++)
         {
@@ -65,14 +70,33 @@ public class PlayActivity extends AppCompatActivity {
                         gridButtonClicked(FINAL_ROW,FINAL_COL);
                     }
                 });
+                button.setTextSize(0);
                 tableRow.addView(button);
+                buttons[row][col] = button;
             }
         }
     }
 
     private void gridButtonClicked(int x,int y) {
         //TODO:decide what button will do+uncomment game above
-        Toast.makeText(getApplicationContext(),""+g.userClick(x,y),Toast.LENGTH_SHORT).show();
+        int result = g.userClick(x,y);
+        switch(result){
+            case 0:
+                    buttons[x][y].setTextSize(12) ;
+                    break;
+            case 1:
+                    buttons[x][y].setBackgroundColor(Color.BLUE);
+                    break;
+            case 2:
+                    buttons[x][y].setTextSize(12);
+                    break;
+            case -1:
+                    this.finish();
+                    break;
+        }
+        for(int i=0; i < NUM_ROWS; i++)
+            for(int j=0; j < NUM_COLS; j++)
+                buttons[i][j].setText(g.getHintNum(i,j)+" ");
         updateUI();
     }
 
