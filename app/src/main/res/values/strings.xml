@@ -13,4 +13,7 @@
     <string name="reset_play_history">Reset Play History</string>
     <string name="back">Back</string>
     <string name="description">TextView</string>
+    <string name="numminesfound">#minesfound</string>
+    <string name="num_scans_used">#scans used</string>
+    <string name="total_play">total_play</string>
 </resources>
