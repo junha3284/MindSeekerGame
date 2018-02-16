@@ -93,6 +93,7 @@ public class PlayActivity extends AppCompatActivity {
                     break;
             case -1: {
                 g.incNumPlayed();
+                g.updateBestScore();
                 this.finish();
                 break;
             }
@@ -107,10 +108,13 @@ public class PlayActivity extends AppCompatActivity {
         TextView num_scan = (TextView) findViewById(R.id.num_scans_used);
         TextView num_mine_found = (TextView) findViewById(R.id.num_found_mines);
         TextView num_played = (TextView) findViewById(R.id.total_play);
+        TextView num_bestScore = (TextView) findViewById(R.id.bestScore);
 
         num_scan.setText(getText(R.string.num_scans_used).toString()+ ": " + g.getAttemptNum());
         num_mine_found.setText(getText(R.string.numminesfound).toString()+": " +g.getFoundMineNum());
         num_played.setText(getText(R.string.total_play).toString()+": " + g.getNumPlayed());
+        if(g.getBestScore() > 0)
+            num_bestScore.setText(getText(R.string.best_score).toString()+" " + g.getBestScore());
     }
 
     public static Intent makeIntent(Context context){
