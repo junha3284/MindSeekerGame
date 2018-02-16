@@ -15,5 +15,6 @@
     <string name="description">TextView</string>
     <string name="numminesfound">#minesfound</string>
     <string name="num_scans_used">#scans used</string>
-    <string name="total_play">total_play</string>
+    <string name="total_play">Total Play:</string>
+    <string name="best_score">Best Score:</string>
 </resources>

@@ -51,7 +51,17 @@
         android:id="@+id/total_play"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/num_scans_used"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="13dp"
         android:text="@string/total_play" />
+
+    <TextView
+        android:id="@+id/bestScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/total_play"
+        android:layout_alignEnd="@+id/num_found_mines"
+        android:layout_marginEnd="11dp"
+        android:text="@string/best_score"/>
 </android.widget.RelativeLayout>
