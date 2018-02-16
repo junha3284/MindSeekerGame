@@ -32,6 +32,7 @@ public class PlayActivity extends AppCompatActivity {
 
         chooseTableSize();
         populateButtons();
+        updateUI();
     }
 
     private void chooseTableSize() {
@@ -90,9 +91,11 @@ public class PlayActivity extends AppCompatActivity {
             case 2:
                     buttons[x][y].setTextSize(12);
                     break;
-            case -1:
-                    this.finish();
-                    break;
+            case -1: {
+                g.incNumPlayed();
+                this.finish();
+                break;
+            }
         }
         for(int i=0; i < NUM_ROWS; i++)
             for(int j=0; j < NUM_COLS; j++)
@@ -103,9 +106,11 @@ public class PlayActivity extends AppCompatActivity {
     private void updateUI(){
         TextView num_scan = (TextView) findViewById(R.id.num_scans_used);
         TextView num_mine_found = (TextView) findViewById(R.id.num_found_mines);
+        TextView num_played = (TextView) findViewById(R.id.total_play);
 
         num_scan.setText(getText(R.string.num_scans_used).toString()+ ": " + g.getAttemptNum());
         num_mine_found.setText(getText(R.string.numminesfound).toString()+": " +g.getFoundMineNum());
+        num_played.setText(getText(R.string.total_play).toString()+": " + g.getNumPlayed());
     }
 
     public static Intent makeIntent(Context context){

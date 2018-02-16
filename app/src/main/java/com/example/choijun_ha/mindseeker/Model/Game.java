@@ -13,6 +13,7 @@ public class Game {
     private int COL_NUM=4;
     private int ROW_NUM=6;
     private int MINE_NUM=6;
+    private int numPlayed=0;
     private int attemptNum;
     private int coveredMineNum;
 
@@ -47,6 +48,10 @@ public class Game {
 
     public int getFoundMineNum() {
         return this.MINE_NUM - this.coveredMineNum;
+    }
+
+    public int getNumPlayed(){
+        return this.numPlayed;
     }
 
     public void setSize(int row, int col){
@@ -140,5 +145,7 @@ public class Game {
         for(int i=0; i < ROW_NUM; i++)
             btns[i][col].decHintNum();
     }
-
+    public void incNumPlayed(){
+        this.numPlayed++;
+    }
 }
