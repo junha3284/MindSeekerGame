@@ -15,7 +15,6 @@
     <string name="description">This is a game to find Ryan the lion in the bushes!</string>
     <string name="numminesfound">#minesfound</string>
     <string name="num_scans_used">#scans used</string>
-    <string name="total_play">total_play</string>
-    <string name="copyright">Copyright ㈜Kakao Corp. All Rights Reserved.</string>
-    <string name="madeby">Made by Jinyoung Hong and Junha Choi</string>
+    <string name="total_play">Total Play:</string>
+    <string name="best_score">Best Score:</string>
 </resources>

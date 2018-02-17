@@ -13,6 +13,8 @@ public class Game {
     private int COL_NUM=4;
     private int ROW_NUM=6;
     private int MINE_NUM=6;
+    private int numPlayed=0;
+    private int bestScore = -1;
     private int attemptNum;
     private int coveredMineNum;
 
@@ -24,10 +26,13 @@ public class Game {
     }
 
     public static Game createGame(){
-        if(game == null)
-            return new Game();
-        else
+        if(game == null) {
+            game = new Game();
             return game;
+        }
+        else {
+            return game;
+        }
     }
 
     public int getColNum(){
@@ -36,6 +41,22 @@ public class Game {
 
     public int getRowNum(){
         return ROW_NUM;
+    }
+
+    public int getAttemptNum(){
+        return this.attemptNum;
+    }
+
+    public int getFoundMineNum() {
+        return this.MINE_NUM - this.coveredMineNum;
+    }
+
+    public int getNumPlayed(){
+        return this.numPlayed;
+    }
+
+    public int getBestScore(){
+        return this.bestScore;
     }
 
     public void setSize(int row, int col){
@@ -129,5 +150,14 @@ public class Game {
         for(int i=0; i < ROW_NUM; i++)
             btns[i][col].decHintNum();
     }
+    public void incNumPlayed(){
+        this.numPlayed++;
+    }
 
+    public void updateBestScore(){
+        if(bestScore == -1)
+            bestScore = attemptNum;
+        else if (bestScore > attemptNum)
+            bestScore = attemptNum;
+    }
 }

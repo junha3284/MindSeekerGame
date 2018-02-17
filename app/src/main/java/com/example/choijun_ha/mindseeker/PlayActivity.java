@@ -3,30 +3,36 @@ package com.example.choijun_ha.mindseeker;
 import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.choijun_ha.mindseeker.Model.Game;
 
 public class PlayActivity extends AppCompatActivity {
 
-    private Game g;
-    int NUM_ROWS=4;
-    int NUM_COLS=6;
+    private Game g = Game.createGame();
+    private Button[][] buttons;
+
+    int NUM_ROWS;
+    int NUM_COLS;
    // private Game game;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
-        g = Game.createGame();
+
         g.startGame();
+
         chooseTableSize();
         populateButtons();
+        updateUI();
     }
 
     private void chooseTableSize() {
@@ -35,6 +41,7 @@ public class PlayActivity extends AppCompatActivity {
     }
 
     private void populateButtons() {
+        buttons = new Button[NUM_ROWS][NUM_COLS];
         TableLayout table=(TableLayout)findViewById(R.id.TableForButtons);
         for(int row=0;row<NUM_ROWS;row++)
         {
@@ -64,7 +71,9 @@ public class PlayActivity extends AppCompatActivity {
                         gridButtonClicked(FINAL_ROW,FINAL_COL);
                     }
                 });
+                button.setTextSize(0);
                 tableRow.addView(button);
+                buttons[row][col] = button;
             }
         }
     }
@@ -83,7 +92,41 @@ public class PlayActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"User found all minds!!",Toast.LENGTH_SHORT).show();
         }
         //TODO:decide what button will do+uncomment game above
-        Toast.makeText(getApplicationContext(),""+g.userClick(x,y),Toast.LENGTH_SHORT).show();
+        int result = g.userClick(x,y);
+        switch(result){
+            case 0:
+                    buttons[x][y].setTextSize(12) ;
+                    break;
+            case 1:
+                    buttons[x][y].setBackgroundColor(Color.BLUE);
+                    break;
+            case 2:
+                    buttons[x][y].setTextSize(12);
+                    break;
+            case -1: {
+                g.incNumPlayed();
+                g.updateBestScore();
+                this.finish();
+                break;
+            }
+        }
+        for(int i=0; i < NUM_ROWS; i++)
+            for(int j=0; j < NUM_COLS; j++)
+                buttons[i][j].setText(g.getHintNum(i,j)+" ");
+        updateUI();
+    }
+
+    private void updateUI(){
+        TextView num_scan = (TextView) findViewById(R.id.num_scans_used);
+        TextView num_mine_found = (TextView) findViewById(R.id.num_found_mines);
+        TextView num_played = (TextView) findViewById(R.id.total_play);
+        TextView num_bestScore = (TextView) findViewById(R.id.bestScore);
+
+        num_scan.setText(getText(R.string.num_scans_used).toString()+ ": " + g.getAttemptNum());
+        num_mine_found.setText(getText(R.string.numminesfound).toString()+": " +g.getFoundMineNum());
+        num_played.setText(getText(R.string.total_play).toString()+": " + g.getNumPlayed());
+        if(g.getBestScore() > 0)
+            num_bestScore.setText(getText(R.string.best_score).toString()+" " + g.getBestScore());
     }
 
     public static Intent makeIntent(Context context){
