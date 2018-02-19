@@ -3,7 +3,11 @@ package com.example.choijun_ha.mindseeker;
 import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -68,6 +72,7 @@ public class PlayActivity extends AppCompatActivity {
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        lockButtonSizes();
                         gridButtonClicked(FINAL_ROW,FINAL_COL);
                     }
                 });
@@ -79,26 +84,21 @@ public class PlayActivity extends AppCompatActivity {
     }
 
     private void gridButtonClicked(int x,int y) {
-        if(g.userClick(x,y)==0)
-        {}
-        else if(g.userClick(x,y)==1)
-        {}
-        else if(g.userClick(x,y)==2)
-        {}
-        else if(g.userClick(x,y)==3)
-        {}
-        else if(g.userClick(x,y)==-1)
-        {
-            Toast.makeText(getApplicationContext(),"User found all minds!!",Toast.LENGTH_SHORT).show();
-        }
         //TODO:decide what button will do+uncomment game above
+
         int result = g.userClick(x,y);
         switch(result){
             case 0:
                     buttons[x][y].setTextSize(12) ;
                     break;
             case 1:
-                    buttons[x][y].setBackgroundColor(Color.BLUE);
+                lockButtonSizes();
+                int newWidth=buttons[x][y].getWidth();
+                int newHeight=buttons[x][y].getHeight();
+                Bitmap originalBitmap= BitmapFactory.decodeResource(getResources(),R.drawable.ryann);
+                Bitmap scaledBitmap= Bitmap.createScaledBitmap(originalBitmap,newWidth,newHeight,true);
+                Resources resource=getResources();
+                buttons[x][y].setBackground(new BitmapDrawable(resource,scaledBitmap));
                     break;
             case 2:
                     buttons[x][y].setTextSize(12);
@@ -114,6 +114,22 @@ public class PlayActivity extends AppCompatActivity {
             for(int j=0; j < NUM_COLS; j++)
                 buttons[i][j].setText(g.getHintNum(i,j)+" ");
         updateUI();
+    }
+
+    private void lockButtonSizes() {
+        for(int row=0;row<g.getRowNum();row++)
+        {
+            for(int col=0;col<g.getColNum();col++)
+            {
+                Button button=buttons[row][col];
+                int width=button.getWidth();
+                button.setMinWidth(width);
+                button.setMaxWidth(width);
+                int height=button.getHeight();
+                button.setMinHeight(height);
+                button.setMaxHeight(height);
+            }
+        }
     }
 
     private void updateUI(){
