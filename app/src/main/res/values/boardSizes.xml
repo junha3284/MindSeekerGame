@@ -1,0 +1,7 @@
+<resources>
+    <string-array name = "boardSizes">
+        <item> 4x6 </item>
+        <item> 5x10 </item>
+        <item> 6x15 </item>
+    </string-array>
+</resources>
