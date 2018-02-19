@@ -35,7 +35,6 @@ public class configActivity extends AppCompatActivity {
 
                 @Override
                 public void onClick(View view) {
-                    // TODO: change Game Model's board size config ( NUM_COL, NUM_ROW)
                     int a=0;
                     for(int j=0;j<size.length();j++)
                     {
@@ -64,7 +63,6 @@ public class configActivity extends AppCompatActivity {
 
                 @Override
                 public void onClick(View view) {
-                    // TODO: change Game Model's mine number config (mineNum)
                     int minenum=nums[p];
                     g.setMineNum(minenum);
 
@@ -80,7 +78,8 @@ public class configActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                // TODO: RESET Game Model's Game History
+                g.resetPlayHistory();
+                configActivity.this.finish();
             }
         });
     }

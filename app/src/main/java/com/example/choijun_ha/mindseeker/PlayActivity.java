@@ -84,8 +84,6 @@ public class PlayActivity extends AppCompatActivity {
     }
 
     private void gridButtonClicked(int x,int y) {
-        //TODO:decide what button will do+uncomment game above
-
         int result = g.userClick(x,y);
         switch(result){
             case 0:
@@ -106,6 +104,7 @@ public class PlayActivity extends AppCompatActivity {
             case -1: {
                 g.incNumPlayed();
                 g.updateBestScore();
+                Toast.makeText(getApplicationContext(),"Score: "+ g.getAttemptNum(),Toast.LENGTH_LONG).show();
                 this.finish();
                 break;
             }

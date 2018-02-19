@@ -160,4 +160,8 @@ public class Game {
         else if (bestScore > attemptNum)
             bestScore = attemptNum;
     }
+    public void resetPlayHistory(){
+        this.bestScore=-1;
+        this.numPlayed=0;
+    }
 }
